@@ -1,9 +1,7 @@
 package com.eshop.api.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +16,16 @@ import com.eshop.api.service.ContactUsService;
 @RestController
 @RequestMapping("api/contactUs")
 public class ContactUsController {
-	@Autowired
     ContactUsService contactUsService;
-    @PostMapping
+    
+    public ContactUsController(ContactUsService contactUsService) {
+		super();
+		this.contactUsService = contactUsService;
+	}
+
+	@PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-	    private ContactUs create(@Validated @RequestBody ContactUs subscriber){
+	    private ContactUs create(@RequestBody ContactUs subscriber){
 	    	ContactUs createdResource = contactUsService.newMessage(subscriber);
 	    	return createdResource;
 	    }

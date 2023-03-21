@@ -3,15 +3,13 @@ package com.eshop.api.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import lombok.Data;
-
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+@Data
 @Entity
 @Table(name="contact")
-@Data
 public class ContactUs {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,15 +1,24 @@
 package com.eshop.api.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+//import jakarta.persistence.ManyToMany;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+//import java.util.Collection;
 @Entity
 @Table(name="product")
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +33,17 @@ public class Product {
 	private String brand;
 	@Column(name="description")
 	private String description;
+	@ManyToMany
 	@Column(name="color")
-	private String color;
+	private Collection<Color> colors;
 	@Column(name="size")
-	private String size;
-	@Column(name="category") // to get specific one for example : men , women or kids
+	@ManyToMany
+	private Collection<Size> sizes;
+	@Column(name="category") 
 	private String category;
-	@Column(name="imageLink")
-	private String imageLink;
+	@Column(name="image")
+	@OneToMany
+	private Collection<Image> images;
 	@Column(name="subCategory")
 	private String subCategory;
 	public long getId() {
@@ -70,17 +82,17 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getColor() {
-		return color;
+	public Collection<Color> getColors() {
+		return colors;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setColors(Collection<Color> colors) {
+		this.colors = colors;
 	}
-	public String getSize() {
-		return size;
+	public Collection<Size> getSizes() {
+		return sizes;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setSizes(Collection<Size> sizes) {
+		this.sizes = sizes;
 	}
 	public String getCategory() {
 		return category;
@@ -88,11 +100,11 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getImageLink() {
-		return imageLink;
+	public Collection<Image> getImages() {
+		return images;
 	}
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
+	public void setImages(Collection<Image> images) {
+		this.images = images;
 	}
 	public String getSubCategory() {
 		return subCategory;
@@ -100,6 +112,5 @@ public class Product {
 	public void setSubCategory(String subCategory) {
 		this.subCategory = subCategory;
 	}
-	
 	
 }

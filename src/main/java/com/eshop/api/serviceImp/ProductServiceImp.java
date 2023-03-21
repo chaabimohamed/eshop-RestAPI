@@ -5,9 +5,13 @@ package com.eshop.api.serviceImp;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.eshop.api.model.Product;
 import com.eshop.api.service.ProductService;
 import com.eshop.api.repository.ProductRepository;
+
+@Component
 public class ProductServiceImp implements ProductService{
 	ProductRepository productRepository;
 

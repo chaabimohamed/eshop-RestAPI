@@ -16,7 +16,7 @@ import com.eshop.api.service.SubscribeService;
 @RequestMapping("api/subscriber")
 public class SubscribeController {
     SubscribeService subscribeService;
-    
+      
 	
     public SubscribeController(SubscribeService subscribeService) {
 		super();
@@ -26,7 +26,7 @@ public class SubscribeController {
 
 	@PostMapping
 	private ResponseEntity<Subscriber> create(@RequestBody Subscriber subscriber){
-    	//System.out.println(subscriber.getEmail());
+    	System.out.println(subscriber.getEmail());
     	return new ResponseEntity<Subscriber>(subscribeService.newSubscriber(subscriber),HttpStatus.CREATED);
 	}
 }
