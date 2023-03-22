@@ -1,5 +1,7 @@
 package com.eshop.api.serviceImp;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.eshop.api.model.Subscriber;
@@ -7,16 +9,21 @@ import com.eshop.api.service.SubscribeService;
 import com.eshop.api.repository.SubscribeRepository;
 @Service
 public class SubscriberServiceImp implements SubscribeService {
-	SubscribeRepository subscribeRepositor;
+	SubscribeRepository subscribeRepository;
 	
-	public SubscriberServiceImp(SubscribeRepository subscribeRepositor) {
+	public SubscriberServiceImp(SubscribeRepository subscribeRepository) {
 		super();
-		this.subscribeRepositor = subscribeRepositor;
+		this.subscribeRepository = subscribeRepository;
 	}
 
 	@Override
 	public Subscriber newSubscriber(Subscriber subscriber) {
-		return subscribeRepositor.save(subscriber);
+		return subscribeRepository.save(subscriber);
+	}
+
+	@Override
+	public List<Subscriber> showAllSubscribers() {
+		return subscribeRepository.findAll();
 	}
 
 }

@@ -34,6 +34,11 @@ public class ProductServiceImp implements ProductService{
 	public Product saveProd(Product product) {
 		return productRepository.save(product);
 	}
+
+	@Override
+	public List<Product> findByCat(String cat) {
+		return productRepository.findByCategory(cat);
+	}
 	
 	
 }

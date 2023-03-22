@@ -1,12 +1,15 @@
 package com.eshop.api.controller;
 
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eshop.api.model.ContactUs;
@@ -22,11 +25,14 @@ public class ContactUsController {
 		super();
 		this.contactUsService = contactUsService;
 	}
+    @GetMapping
+    private ResponseEntity<List<ContactUs>> showAllSub(){
+    	return new ResponseEntity<List<ContactUs>>(contactUsService.showAllContactMessages(),HttpStatus.ACCEPTED);
+    }
+
 
 	@PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-	    private ContactUs create(@RequestBody ContactUs subscriber){
-	    	ContactUs createdResource = contactUsService.newMessage(subscriber);
-	    	return createdResource;
-	    }
+	private ResponseEntity<ContactUs> create(@RequestBody ContactUs contactUs){
+    	return new ResponseEntity<ContactUs>(contactUsService.newMessage(contactUs),HttpStatus.CREATED);
+	}
 }

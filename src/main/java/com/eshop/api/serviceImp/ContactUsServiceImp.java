@@ -1,5 +1,7 @@
 package com.eshop.api.serviceImp;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.eshop.api.model.ContactUs;
@@ -18,6 +20,11 @@ public class ContactUsServiceImp implements ContactUsService{
 	@Override
 	public ContactUs newMessage(ContactUs contactUs) {
 		return contactUsRepository.save(contactUs);
+	}
+
+	@Override
+	public List<ContactUs> showAllContactMessages() {
+		return contactUsRepository.findAll();
 	}
 
 }

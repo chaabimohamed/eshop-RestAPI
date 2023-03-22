@@ -1,8 +1,11 @@
 package com.eshop.api.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +25,13 @@ public class SubscribeController {
 		super();
 		this.subscribeService = subscribeService;
 	}
-
+    @GetMapping
+    private ResponseEntity<List<Subscriber>> showAllSub(){
+    	return new ResponseEntity<List<Subscriber>>(subscribeService.showAllSubscribers(),HttpStatus.ACCEPTED);
+    }
 
 	@PostMapping
 	private ResponseEntity<Subscriber> create(@RequestBody Subscriber subscriber){
-    	System.out.println(subscriber.getEmail());
     	return new ResponseEntity<Subscriber>(subscribeService.newSubscriber(subscriber),HttpStatus.CREATED);
 	}
 }

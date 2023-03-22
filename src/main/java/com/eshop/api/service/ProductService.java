@@ -11,6 +11,6 @@ import com.eshop.api.model.Product;
 public interface ProductService {
 	Product saveProd(Product product);
 	List<Product> findAllProd();
-	Optional<Product> findProdById(Long Id);
-	
+	Optional<Product> findProdById(Long id);
+	List<Product> findByCat(String cat);
 }
